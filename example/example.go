@@ -29,6 +29,11 @@ func main() {
 	v.Eq(user.Password, user.Rpassword, errors.New("password not match"))
 	v.Email(user.Email, errors.New("email not valid"))
 
+	v.ValidateFunc(func() error {
+		// custom validation
+		return nil
+	})
+
 	if err := v.Validate(); err != nil {
 		log.Fatal(err)
 	}
